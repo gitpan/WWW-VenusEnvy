@@ -1,0 +1,12 @@
+TODO
+lib/WWW/VenusEnvy.pm
+README
+Changes
+MANIFEST
+t/00compile.t
+t/01basic.t
+INSTALL
+Makefile.PL
+LICENSE
+NOTICE
+META.yml
