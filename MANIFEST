@@ -6,6 +6,8 @@ MANIFEST
 t/00compile.t
 t/01basic.t
 INSTALL
+examples/mirrorVenusEnvy.pl
+examples/getComics.pl
 Makefile.PL
 LICENSE
 NOTICE

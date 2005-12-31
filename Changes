@@ -1,3 +1,9 @@
+Version 1.04 - 31st December 2005
+    + Fixed typo in header command and in POD.
+
+    + Added more to examples/* in the distribution
+      tarball.
+
 Version 1.02 - 30th December 2005
     + Initial release.
 

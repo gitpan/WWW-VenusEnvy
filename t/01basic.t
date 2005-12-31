@@ -41,17 +41,17 @@ ok(_image_format($blobs[0]) eq 'jpg','blob is a jpeg image');
 
 ok(mirror_strip('foo.gif','20051229.jpg') eq 'foo.jpg','mirror_strip 20051229.jpg to foo.jpg');
 ok(-f 'foo.jpg','foo.jpg exists');
-#unlink 'foo.jpg' if -f 'foo.jpg';
+unlink 'foo.jpg' if -f 'foo.jpg';
 
 ok(mirror_strip('bar') =~ /bar\.(gif|jpg)/,'mirror_strip to bar');
 ok(-f 'bar.gif' || -f 'bar.jpg','mirror_strip check bar.??? file');
-#unlink 'bar.gif' if -f 'bar.gif';
-#unlink 'bar.jpg' if -f 'bar.jpg';
+unlink 'bar.gif' if -f 'bar.gif';
+unlink 'bar.jpg' if -f 'bar.jpg';
 
 my $file = '';
 ok($file = mirror_strip(),'mirror_strip blindly');
 ok(-f $file,"check file $file exists");
-#unlink $file if -f $file;
+unlink $file if -f $file;
 
 sub _image_format {
 	local $_ = shift || '';

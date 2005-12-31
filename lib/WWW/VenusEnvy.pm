@@ -1,7 +1,7 @@
 ############################################################
 #
-#   $Id: VenusEnvy.pm,v 1.2 2005/12/30 17:07:42 nicolaw Exp $
-#   WWW::VenusEnvy - Retrieve VenusEnvy of the day comic strip images
+#   $Id: VenusEnvy.pm,v 1.4 2005/12/31 15:34:36 nicolaw Exp $
+#   WWW::VenusEnvy - Retrieve VenusEnvy comic strip images
 #
 #   Copyright 2004,2005 Nicola Worthington
 #
@@ -29,7 +29,7 @@ use HTTP::Request qw();
 use Carp qw(carp croak);
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
 
-$VERSION     = sprintf('%d.%02d', q$Revision: 1.2 $ =~ /(\d+)/g);
+$VERSION     = sprintf('%d.%02d', q$Revision: 1.4 $ =~ /(\d+)/g);
 @ISA         = qw(Exporter);
 @EXPORT      = ();
 @EXPORT_OK   = qw(&get_strip &strip_url &mirror_strip);
@@ -139,7 +139,7 @@ sub _new_agent {
 
 WWW::VenusEnvy - Retrieve VenusEnvy comic strip images
 
-=head1 SYNOPSYS
+=head1 SYNOPSIS
 
  use WWW::VenusEnvy qw(get_strip mirror_strip strip_url);
  
@@ -166,7 +166,7 @@ write it to disk.
 
 =head1 VERSION
 
-$Id: VenusEnvy.pm,v 1.2 2005/12/30 17:07:42 nicolaw Exp $
+$Id: VenusEnvy.pm,v 1.4 2005/12/31 15:34:36 nicolaw Exp $
 
 =head1 AUTHOR
 
