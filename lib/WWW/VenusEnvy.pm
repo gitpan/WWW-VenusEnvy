@@ -1,9 +1,9 @@
 ############################################################
 #
-#   $Id: VenusEnvy.pm,v 1.4 2005/12/31 15:34:36 nicolaw Exp $
+#   $Id: VenusEnvy.pm,v 1.6 2006/01/07 12:23:26 nicolaw Exp $
 #   WWW::VenusEnvy - Retrieve VenusEnvy comic strip images
 #
-#   Copyright 2004,2005 Nicola Worthington
+#   Copyright 2005,2006 Nicola Worthington
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ use HTTP::Request qw();
 use Carp qw(carp croak);
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
 
-$VERSION     = sprintf('%d.%02d', q$Revision: 1.4 $ =~ /(\d+)/g);
+$VERSION     = sprintf('%d.%02d', q$Revision: 1.6 $ =~ /(\d+)/g);
 @ISA         = qw(Exporter);
 @EXPORT      = ();
 @EXPORT_OK   = qw(&get_strip &strip_url &mirror_strip);
@@ -126,7 +126,7 @@ sub _new_agent {
 			timeout => 20
 		);
 	$ua->env_proxy;
-	$ua->max_size(1024*250);
+	$ua->max_size(1024*500);
 	return $ua;
 }
 
@@ -166,7 +166,7 @@ write it to disk.
 
 =head1 VERSION
 
-$Id: VenusEnvy.pm,v 1.4 2005/12/31 15:34:36 nicolaw Exp $
+$Id: VenusEnvy.pm,v 1.6 2006/01/07 12:23:26 nicolaw Exp $
 
 =head1 AUTHOR
 
@@ -176,7 +176,7 @@ L<http://perlgirl.org.uk>
 
 =head1 COPYRIGHT
 
-Copyright 2004,2005 Nicola Worthington.
+Copyright 2005,2006 Nicola Worthington.
 
 This software is licensed under The Apache Software License, Version 2.0.
 

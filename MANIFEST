@@ -5,6 +5,8 @@ Changes
 MANIFEST
 t/00compile.t
 t/01basic.t
+t/02pod_coverage.t
+t/01pod.t
 INSTALL
 examples/mirrorVenusEnvy.pl
 examples/getComics.pl
