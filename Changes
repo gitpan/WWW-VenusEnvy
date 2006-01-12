@@ -1,3 +1,13 @@
+Version 1.08 - 12th January 2006
+    + Added support for the strip URL to be on
+      venusenvy.comicgenesis.com.
+
+    + Added additional POD.
+
+    + Fixed pod_coverage unit test to actually
+      use Test::Pod::Coverage instead of 
+      Test::Pod (which was a mistake)
+
 Version 1.06 - 7th January 2006
     + Added Test::Pod and Test::Pod::Coverage
       unit tests.

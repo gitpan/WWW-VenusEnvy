@@ -1,4 +1,4 @@
-# $Id: 01basic.t,v 1.2 2005/12/30 17:05:41 nicolaw Exp $
+# $Id: 01basic.t,v 1.3 2006/01/12 15:16:39 nicolaw Exp $
 
 chdir('t') if -d 't';
 use lib qw(./lib ../lib);
@@ -9,7 +9,7 @@ use WWW::VenusEnvy qw(:all);
 my $url = '';
 ok($url = strip_url(),'strip_url');
 ok($url =~
-	m#^https?://venusenvy.keenspace.com/comics/\d+\.(jpg|gif|png)$#i,
+	m#^https?://venusenvy\.(keenspace|comicgenesis)\.com/comics/\d+\.(jpg|gif|png)$#i,
 		'strip_url results'
 	);
 
@@ -18,7 +18,7 @@ sleep 3;
 my $oldurl = $url;
 ok($url = strip_url(),'strip_url again');
 ok($url =~
-	m#^https?://venusenvy.keenspace.com/comics/\d+\.(jpg|gif|png)$#i,
+	m#^https?://venusenvy\.(keenspace|comicgenesis)\.com/comics/\d+\.(jpg|gif|png)$#i,
 		'strip_url results again'
 	);
 

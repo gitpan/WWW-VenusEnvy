@@ -1,6 +1,6 @@
 ############################################################
 #
-#   $Id: VenusEnvy.pm,v 1.6 2006/01/07 12:23:26 nicolaw Exp $
+#   $Id: VenusEnvy.pm,v 1.8 2006/01/12 15:26:18 nicolaw Exp $
 #   WWW::VenusEnvy - Retrieve VenusEnvy comic strip images
 #
 #   Copyright 2005,2006 Nicola Worthington
@@ -29,7 +29,7 @@ use HTTP::Request qw();
 use Carp qw(carp croak);
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
 
-$VERSION     = sprintf('%d.%02d', q$Revision: 1.6 $ =~ /(\d+)/g);
+$VERSION     = sprintf('%d.%02d', q$Revision: 1.8 $ =~ /(\d+)/g);
 @ISA         = qw(Exporter);
 @EXPORT      = ();
 @EXPORT_OK   = qw(&get_strip &strip_url &mirror_strip);
@@ -97,7 +97,7 @@ sub strip_url {
 	my $response = $ua->get('http://venusenvy.keenspace.com');
 	if ($response->is_success) {
 		my $html = $response->content;
-		if ($html =~ m#<img\s+.*?src="((https?://venusenvy.keenspace.com)?
+		if ($html =~ m#<img\s+.*?src="((https?://venusenvy\.(keenspace|comicgenesis)\.com)?
 						/comics/\d{8}\d*\.(gif|jpg|png))".*?>#imsx) {
 			my $url = $1;
 			$url = "http://venusenvy.keenspace.com$1" unless $url =~ /^https?:\/\//i;
@@ -160,13 +160,48 @@ WWW::VenusEnvy - Retrieve VenusEnvy comic strip images
 
 =head1 DESCRIPTION
 
-This module will download the latest VenusEnvy cartoon strip from
+This module will download the latest VenusEnvy comic strip from
 the Keenspace website and return a binary blob of the image, or
 write it to disk. 
 
+=head1 EXPORTS
+
+The following functions can be exported with the C<:all> export
+tag, or individually as is show in the above example.
+
+=head2 strip_url
+
+ # Return todays strip URL
+ my $url = strip_url();
+ 
+ # Return the strip URL for 19th August 2005
+ $url = strip_url("20050819");
+
+Accepts an optional argument specifying the date of the comic
+strip in ISO format C<YYYYMMDD>.
+
+=head2 get_strip
+
+ # Get todays comic strip image
+ my $image_blob = get_strip();
+
+Accepts an optional argument specifying the date of the comic
+strip in ISO format C<YYYYMMDD>.
+
+=head2 mirror_strip
+
+ # Write todays comic strip to "mystrip.gif" on disk
+ my $filename_written = mirror_strip("mystrip.gif");
+
+Accepts two optional arguments. The first is the filename that
+the comic strip should be written to on disk. The second specifies
+the date of the comic strip in ISO format C<YYYYMMDD>.
+
+Returns the name of the file that was written to disk.
+
 =head1 VERSION
 
-$Id: VenusEnvy.pm,v 1.6 2006/01/07 12:23:26 nicolaw Exp $
+$Id: VenusEnvy.pm,v 1.8 2006/01/12 15:26:18 nicolaw Exp $
 
 =head1 AUTHOR
 
