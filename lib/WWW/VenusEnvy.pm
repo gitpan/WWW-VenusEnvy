@@ -1,6 +1,6 @@
 ############################################################
 #
-#   $Id: VenusEnvy.pm,v 1.8 2006/01/12 15:26:18 nicolaw Exp $
+#   $Id: VenusEnvy.pm,v 1.9 2006/01/20 21:06:54 nicolaw Exp $
 #   WWW::VenusEnvy - Retrieve VenusEnvy comic strip images
 #
 #   Copyright 2005,2006 Nicola Worthington
@@ -29,7 +29,7 @@ use HTTP::Request qw();
 use Carp qw(carp croak);
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
 
-$VERSION     = sprintf('%d.%02d', q$Revision: 1.8 $ =~ /(\d+)/g);
+$VERSION     = sprintf('%d.%02d', q$Revision: 1.9 $ =~ /(\d+)/g);
 @ISA         = qw(Exporter);
 @EXPORT      = ();
 @EXPORT_OK   = qw(&get_strip &strip_url &mirror_strip);
@@ -67,7 +67,8 @@ sub get_strip {
 
 	my $ua = _new_agent();
 	my $req = HTTP::Request->new(GET => $url); 
-	$req->referer('http://venusenvy.keenspace.com/');
+	#$req->referer('http://venusenvy.keenspace.com/');
+	$req->referer('http://venusenvy.comicgenesis.com/');
 	my $response = $ua->request($req);
 
 	my $status;
@@ -75,7 +76,8 @@ sub get_strip {
 		$status = $response->status_line;
 		unless ($url =~ s/\.gif$/.jpg/i) { $url =~ s/\.jpg$/.gif/i; }
 		$req = HTTP::Request->new(GET => $url); 
-		$req->referer('http://venusenvy.keenspace.com/');
+		#$req->referer('http://venusenvy.keenspace.com/');
+		$req->referer('http://venusenvy.comicgenesis.com/');
 		$response = $ua->request($req);
 	}
 
@@ -120,9 +122,19 @@ sub _image_format {
 }
 
 sub _new_agent {
+	my @agents = (
+			'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1).',
+			'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.8) '.
+			'Gecko/20050718 Firefox/1.0.4 (Debian package 1.0.4-2sarge1)',
+			'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.7.5) '.
+			'Gecko/20041110 Firefox/1.0',
+			'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) '.
+			'AppleWebKit/125.5.5 (KHTML, like Gecko) Safari/125.12',
+			'Mozilla/4.0 (compatible; MSIE 6.0; Windows 98)',
+		);
+
 	my $ua = LWP::UserAgent->new(
-			agent => 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.8) '.
-					'Gecko/20050718 Firefox/1.0.4 (Debian package 1.0.4-2sarge1)',
+			agent => $agents[int(rand(@agents))],
 			timeout => 20
 		);
 	$ua->env_proxy;
@@ -201,7 +213,7 @@ Returns the name of the file that was written to disk.
 
 =head1 VERSION
 
-$Id: VenusEnvy.pm,v 1.8 2006/01/12 15:26:18 nicolaw Exp $
+$Id: VenusEnvy.pm,v 1.9 2006/01/20 21:06:54 nicolaw Exp $
 
 =head1 AUTHOR
 

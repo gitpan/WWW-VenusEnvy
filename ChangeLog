@@ -1,3 +1,8 @@
+2006-01-20  nicolaw
+
+	* lib/WWW/VenusEnvy.pm (1.9): Changed to use different agents and
+	  to set refer to comicgenesis.com
+
 2006-01-12  nicolaw
 
 	* Changes (1.6): Version 1.08

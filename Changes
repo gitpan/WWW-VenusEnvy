@@ -1,3 +1,8 @@
+Version 1.09 - 20th January 2006
+    + Changed the useragent and refer in LWP::UA
+      calls so that the images download on the
+      new Keenspace hostname.
+
 Version 1.08 - 12th January 2006
     + Added support for the strip URL to be on
       venusenvy.comicgenesis.com.
