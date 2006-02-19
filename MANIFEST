@@ -1,4 +1,4 @@
-ChangeLog
+Build.PL
 Changes
 examples/getComics.pl
 examples/mirrorVenusEnvy.pl
@@ -6,7 +6,7 @@ INSTALL
 lib/WWW/VenusEnvy.pm
 LICENSE
 Makefile.PL
-MANIFEST
+MANIFEST			This list of files
 META.yml
 NOTICE
 README

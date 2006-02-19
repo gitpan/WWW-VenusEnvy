@@ -1,6 +1,6 @@
 ############################################################
 #
-#   $Id: VenusEnvy.pm,v 1.9 2006/01/20 21:06:54 nicolaw Exp $
+#   $Id: VenusEnvy.pm,v 1.10 2006/01/28 13:17:40 nicolaw Exp $
 #   WWW::VenusEnvy - Retrieve VenusEnvy comic strip images
 #
 #   Copyright 2005,2006 Nicola Worthington
@@ -29,7 +29,7 @@ use HTTP::Request qw();
 use Carp qw(carp croak);
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
 
-$VERSION     = sprintf('%d.%02d', q$Revision: 1.9 $ =~ /(\d+)/g);
+$VERSION     = '1.10' || sprintf('%d.%02d', q$Revision$ =~ /(\d+)/g);
 @ISA         = qw(Exporter);
 @EXPORT      = ();
 @EXPORT_OK   = qw(&get_strip &strip_url &mirror_strip);
@@ -84,6 +84,14 @@ sub get_strip {
 	if ($response->is_success) {
 		unless (_image_format($response->content)) {
 			carp('Unrecognised image format') if $^W;
+			return undef;
+		}
+		if (length($response->content) < 1300) {
+			if ($response->content =~ /(anti\-?)?hotlinking/i) {
+				carp('Image has been blocked by anti-hotlinking server') if $^W;
+				return undef;
+			}
+			carp('Image data is too') if $^W;
 			return undef;
 		}
 		return $response->content;
@@ -213,7 +221,7 @@ Returns the name of the file that was written to disk.
 
 =head1 VERSION
 
-$Id: VenusEnvy.pm,v 1.9 2006/01/20 21:06:54 nicolaw Exp $
+$Id: VenusEnvy.pm,v 1.10 2006/01/28 13:17:40 nicolaw Exp $
 
 =head1 AUTHOR
 
